@@ -1,0 +1,75 @@
+<apex:page title="Alien Mind Control" controller="AlienMindController" showHeader="false" sidebar="false" tabStyle="Contact">
+  <apex:form >
+    <br/>
+    <br/>
+    <b>&nbsp;&nbsp;
+    <apex:outputLabel value="Name:  "/><apex:inputText value="{!searchName}"/>&nbsp;&nbsp;
+    <apex:outputLabel value="Account:  "/><apex:inputText value="{!searchAccount}"/>&nbsp;&nbsp;
+    <apex:outputLabel value="City: "/><apex:inputText value="{!searchCity}"/>&nbsp;&nbsp; 
+    <apex:outputLabel value="State: "/><apex:selectList value="{!searchState}" multiselect="false" size="1">
+      <apex:selectOptions value="{!States}"/>
+    </apex:selectList>&nbsp;&nbsp;
+    <apex:outputLabel value="Country:"/>&nbsp;&nbsp;<apex:selectList value="{!selectedCountry1}" multiselect="false" size="1">
+      <apex:selectOptions value="{!Countries}"/>
+    </apex:selectList>&nbsp;&nbsp;
+    </b>
+    <apex:commandButton value="Search" action="{!search}"/>
+    <apex:commandButton value="Clear" action="{!clear}"/>
+    <br/>
+    <br/>
+    <br/>
+    <apex:pageBlock title="PageBlock: Contacts">
+      <apex:pageBlockSection title="PageBlockSection: Contact List" columns="2">
+        <apex:pageBlockSectionItem >
+          <apex:outputLabel value="My Name Is:"/>
+          <apex:outputText value="{!$User.FirstName + ' ' + $User.LastName}"/>
+        </apex:pageBlockSectionItem>
+        <apex:pageBlockSectionItem >
+          <apex:outputLabel value="I Am a:"/>
+          <apex:outputText value="{!$User.Title}"/>
+        </apex:pageBlockSectionItem>
+      </apex:pageBlockSection>
+      <apex:pageBlockTable value="{!Aliens}" var="a">
+        <apex:column >
+          <apex:outputLink value="../../{!a.Id}">{!a.Name}</apex:outputLink>
+          <apex:facet name="header">
+            <apex:commandLink action="{!sortByName}">Name</apex:commandLink>
+          </apex:facet>
+        </apex:column>
+        <apex:column >
+          <apex:outputLink value="../../{!a.Account.Id}">{!a.Account.Name}</apex:outputLink>
+          <apex:facet name="header">
+            <apex:commandLink action="{!sortByAccount}">Company</apex:commandLink>
+          </apex:facet>
+        </apex:column>
+        <apex:column value="{!a.Phone}"/>
+        <apex:column value="{!a.MobilePhone}"/>
+        <apex:column value="{!a.Is_Executive__c}">
+          <apex:facet name="header">
+            <apex:commandLink action="{!sortByIsExecutive}">Is Executive</apex:commandLink>
+          </apex:facet>
+        </apex:column>
+        <apex:column value="{!a.MailingCity}">
+          <apex:facet name="header">
+            <apex:commandLink action="{!sortByCity}">Mailing City</apex:commandLink>
+          </apex:facet>
+        </apex:column>
+        <apex:column value="{!a.MailingState}">
+          <apex:facet name="header">
+            <apex:commandLink action="{!sortByState}">Mailing State</apex:commandLink>
+          </apex:facet>
+        </apex:column>
+        <apex:column value="{!a.MailingCountry}">
+          <apex:facet name="header">
+            <apex:commandLink action="{!sortByCountry}">Mailing Country</apex:commandLink>
+          </apex:facet>
+        </apex:column>
+        <apex:column value="{!a.Id}">
+          <apex:facet name="header">
+            <apex:commandLink action="{!sortById}">Contact ID</apex:commandLink>
+          </apex:facet>
+        </apex:column>
+      </apex:pageBlockTable>
+    </apex:pageBlock>
+  </apex:form>
+</apex:page>
