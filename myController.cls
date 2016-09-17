@@ -1,4 +1,5 @@
 public with sharing class MyController {
+
     public Lead lead {get;set;}
     public List<Lead> leads {get;set;}
     private List<String> conditions = new List<String>();
@@ -11,8 +12,8 @@ public with sharing class MyController {
     public void search() {
         String qrySelect = 'SELECT Name,' +
                                   'Company,' +
-                                  'Rating,' +
                                   'NumberOfEmployees,' +
+                                  'Rating__c,' +
                                   'Star_Rating__c ' +
                              'FROM Lead ';
                              
@@ -30,8 +31,8 @@ public with sharing class MyController {
           conditions.add('NumberOfEmployees >= ' + lead.NumberOfEmployees);
         }
         
-        if (lead.Rating__c!= null && lead.Rating__c> '') {
-          conditions.add('Rating = \'' + lead.Rating__c + '\'');
+        if (lead.Rating__c != null && lead.Rating__c > '') {
+          conditions.add('Rating__c = \'' + lead.Rating__c + '\'');
         }
         
         for (Integer i=0; i<conditions.size(); i++) {
@@ -60,3 +61,4 @@ public with sharing class MyController {
 
         return options;
     }
+}
