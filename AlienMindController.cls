@@ -139,8 +139,7 @@ public with sharing class AlienMindController {
     public void sortByAccount () {
       if (sortOrder == ' ORDER BY Account.Name ASC ') {
         sortOrder = ' ORDER BY Account.Name DESC ';
-      }
-      else {
+      } else {
         sortOrder = ' ORDER BY Account.Name ASC ';
       }
       search();
@@ -149,8 +148,7 @@ public with sharing class AlienMindController {
     public void sortByName () {
       if (sortOrder == ' ORDER BY Name ASC ') {
         sortOrder = ' ORDER BY Name DESC ';
-      }
-      else {
+      } else {
         sortOrder = ' ORDER BY Name ASC ';
       }
       search();
@@ -159,8 +157,7 @@ public with sharing class AlienMindController {
     public void sortByIsExecutive() {
       if (sortOrder == ' ORDER BY Is_Executive__c ASC ') {
         sortOrder = ' ORDER BY Is_Executive__c DESC ';
-      }
-      else {
+      } else {
         sortOrder = ' ORDER BY Is_Executive__c ASC ';
       }
       search();
@@ -169,8 +166,7 @@ public with sharing class AlienMindController {
     public void sortByCity () {
       if (sortOrder == ' ORDER BY MailingCity ASC ') {
         sortOrder = ' ORDER BY MailingCity DESC ';
-      }
-      else {
+      } else {
         sortOrder = ' ORDER BY MailingCity ASC ';
       }
       search();
@@ -179,8 +175,7 @@ public with sharing class AlienMindController {
     public void sortByState () {
       if (sortOrder == ' ORDER BY MailingState ASC ') {
         sortOrder = ' ORDER BY MailingState DESC ';
-      }
-      else {
+      } else {
         sortOrder = ' ORDER BY MailingState ASC ';
       }
       search();
@@ -189,8 +184,7 @@ public with sharing class AlienMindController {
     public void sortByCountry () {
       if (sortOrder == ' ORDER BY MailingCountry ASC ') {
         sortOrder = ' ORDER BY MailingCountry DESC ';
-      }
-      else {
+      } else {
         sortOrder = ' ORDER BY MailingCountry ASC ';
       }
       search();
@@ -199,8 +193,7 @@ public with sharing class AlienMindController {
     public void sortById () {
       if (sortOrder == ' ORDER BY ID ASC ') {
         sortOrder = ' ORDER BY ID DESC ';
-      }
-      else {
+      } else {
         sortOrder = ' ORDER BY ID ASC ';
       }
       search();
