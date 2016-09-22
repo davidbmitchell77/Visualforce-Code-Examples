@@ -1,0 +1,25 @@
+<apex:page standardController="Contact" recordSetVar="contacts">
+  <script>
+    function openPopup(id) {
+      var newWin = window.open('{!$Page.Popup}?id=' + id, 'Popup',
+      'height=650,width=1300,left=100,top=100,resizeable=no,scrollbar=yes,toolbar=no,status=no'
+      );
+      if (window.focus) {
+        newWin.focus();
+      }
+      return(false);
+    }
+  </script>
+  <apex:pageBlock title="Contacts">
+    <apex:pageBlockTable value="{!contacts}" var="c">
+      <apex:column headerValue="Name">
+        <apex:outputLink title="View contact details in a popup window." onclick="return openPopup('{!c.Id}')">{!c.Name}</apex:outputLink>
+      </apex:column>
+      <apex:column value="{!c.Title}"/>
+      <apex:column value="{!c.Account.Name}"/>
+      <apex:column value="{!c.Account.Type}"/>
+      <apex:column value="{!c.Account.Industry}"/>
+      <apex:column value="{!c.Account.Owner.Name}" headerValue="Account Owner"/>
+    </apex:pageBlockTable>
+  </apex:pageBlock>
+</apex:page>

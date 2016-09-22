@@ -1,0 +1,6 @@
+<apex:page standardController="Contact" sidebar="false" showHeader="false">
+  <apex:pageBlock >
+    <apex:sectionHeader title="Contact" subtitle="{!Contact.Name}"/>
+    <apex:detail relatedList="false"/>
+  </apex:pageBlock>
+</apex:page>
