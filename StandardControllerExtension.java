@@ -8,21 +8,21 @@ public class StandardControllerExtension {
     
     public List<Opportunity> getOpportunities() {
         Opportunities = [SELECT Id,
-                       Name,
-                       Amount,
-                       StageName,
-                       CloseDate,
-                       IsClosed,
-                       OwnerId
-                  FROM Opportunity
-                 WHERE AccountId = :acct.Id
-                 LIMIT 100];
+                         Name,
+                         Amount,
+                         StageName,
+                         CloseDate,
+                         IsClosed,
+                         OwnerId
+                    FROM Opportunity
+                   WHERE AccountId = :acct.Id
+                   LIMIT 100];
          return Opportunities;
     }
     
     private void createTaskOnChildOppty() {
         List<Task> tasksToInsert = new List<Task>();
-        for (Opportunity o : Opportunities) {
+        for (Opportunity o : getOpportunities()) {
             if (!o.IsClosed) {
                 tasksToInsert.add(
                     new Task(
