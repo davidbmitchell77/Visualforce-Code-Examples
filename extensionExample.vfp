@@ -1,0 +1,22 @@
+<apex:page standardController="Account" extensions="StandardControllerExtension" tabStyle="Account">
+    <apex:form >
+        <apex:pageBlock >
+            <apex:pageBlockButtons >
+                <apex:commandbutton action="{!save}" value="Save"/>
+            </apex:pageBlockButtons>
+        <apex:pageBlockSection >
+            <apex:inputField value="{!Account.Name}"/>
+            <apex:inputField value="{!Account.Rating}"/>
+        </apex:pageBlockSection>
+        </apex:pageBlock>
+        <apex:pageBlock >
+            <apex:pageBlockTable value="{!Opportunities}" var="oppty">
+                <apex:column value="{!oppty.Name}"/>
+                <apex:column value="{!oppty.Amount}"/>
+                <apex:column value="{!oppty.StageName}"/>
+                <apex:column value="{!oppty.CloseDate}"/>
+                <apex:column value="{!oppty.IsClosed}"/>
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>
