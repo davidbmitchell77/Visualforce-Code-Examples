@@ -1,0 +1,36 @@
+<apex:page standardController="Contact" recordSetVar="contacts" tabStyle="Contact">
+  <apex:form >
+    <apex:pageBlock title="Contact List with Pagination Controls">
+      <apex:panelGrid columns="2">
+        <apex:selectList value="{!filterId}" size="1">
+          <apex:selectOptions value="{!listViewOptions}"/>
+        </apex:selectList>
+        <apex:commandButton value="Go" action="{!null}"/>
+      </apex:panelGrid>
+      <apex:pageBlockTable title="Contact List with Pagination" value="{!contacts}" var="c">
+        <apex:column value="{!c.Name}"/>
+        <apex:column value="{!c.Title}"/>
+        <apex:column value="{!c.Account.Name}" headerValue="Company"/>
+        <apex:column value="{!c.Email}"/>
+      </apex:pageBlockTable>
+      <apex:panelGrid columns="6" cellspacing="4">
+        <apex:commandButton action="{!First}" value="<<" title="First Page" rendered="true"/>
+        <apex:commandButton action="{!Previous}" value="<" title="Previous Page" rendered="true" />
+        <apex:commandButton action="{!Next}" value=">" title="Next Page" disabled="{!NOT(HasNext)}"/>
+        <apex:commandButton action="{!Last}" value=">>" title="Last Page" disabled="{!NOT(HasNext)}"/>
+        <apex:outputPanel >
+          <apex:outputText value="Records per page: "/>
+          <apex:selectList value="{!PageSize}" size="1">
+            <apex:selectOption itemValue="5" itemLabel="5"/>
+            <apex:selectOption itemValue="10" itemLabel="10"/>
+            <apex:selectOption itemValue="20" itemLabel="20"/>
+            <apex:selectOption itemValue="25" itemLabel="25"/>
+            <apex:selectOption itemValue="50" itemLabel="50"/>
+          </apex:selectList>
+          <apex:commandButton action="{!NULL}" value="Update" title="Update records per page"/>&nbsp;&nbsp;&nbsp;&nbsp;
+          <apex:outputText value="Page {!PageNumber} of {!CEILING(ResultSize / PageSize)}"/>
+        </apex:outputPanel>
+      </apex:panelGrid>
+    </apex:pageBlock>
+  </apex:form>
+</apex:page>
