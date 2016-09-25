@@ -17,7 +17,7 @@ private class CustomControllerTestClass {
         Test.startTest();
         PageReference myPageRef = Page.MyVisualForcePage; //<-- change to: Page.{your visualforce page name}
         Test.setCurrentPageReference(myPageRef);
-        myPageRef.getParameters().put('', acct.Id);
+        myPageRef.getParameters().put('id', acct.Id);
         CustomController cc = new CustomController(); //<-- change to: new {your custom controller class name}
         cc.acct.Rating = 'Hot';
         cc.save();
