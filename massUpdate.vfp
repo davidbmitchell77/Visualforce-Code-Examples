@@ -1,0 +1,21 @@
+<apex:page standardController="Contact" recordSetVar="contacts">
+  <apex:form >
+    <apex:pageBlock title="Account Related Contacts Mass Update">
+      <apex:pageMessages />
+      <apex:pageBlockButtons location="bottom">
+        <apex:commandButton action="{!save}" value="Update Contacts"/>
+        <apex:commandButton action="{!cancel}" value="Cancel"/>
+      </apex:pageBlockButtons>
+      <apex:pageBlockSection >
+        <apex:inputField value="{!Contact.AccountId}"/>
+      </apex:pageBlockSection>
+    </apex:pageBlock>
+    <apex:pageBlock >
+      <apex:pageBlockTable value="{!selected}" var="c">
+        <apex:column value="{!c.FirstName}"/>
+        <apex:column value="{!c.LastName}"/>
+        <apex:column value="{!c.Account.Name}"/>
+      </apex:pageBlockTable>
+    </apex:pageBlock>
+  </apex:form>
+</apex:page>
