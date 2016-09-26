@@ -1,0 +1,43 @@
+<apex:page controller="CustomAccountListController" tabStyle="Account">
+  <apex:form >
+    <apex:pageBlock title="Accounts" id="theList">
+      <apex:pageMessages />
+      <apex:panelGrid columns="2">
+        <apex:outputLabel value="Company Size: "/>
+        <apex:actionStatus id="filterStatus" startText="Please wait...">
+          <apex:facet name="stop">
+            <apex:selectList value="{!chosenSize}" size="1">
+              <apex:actionSupport action="{!applyFilter}" event="onchange" status="filterStatus" reRender="theList"/>
+              <apex:selectOptions value="{!sizeOptions}"/>
+            </apex:selectList>
+          </apex:facet>
+        </apex:actionStatus>
+      </apex:panelGrid>
+      <apex:pageBlockTable value="{!Accounts}" var="a" rendered="{!Accounts != null}">
+        <apex:column value="{!a.Name}"/>
+        <apex:column value="{!a.BillingCity}"/>
+        <apex:column value="{!a.BillingState}"/>
+        <apex:column value="{!a.Phone}"/>
+        <apex:column value="{!a.NumberOfEmployees}"/>
+      </apex:pageBlockTable>
+      <apex:panelGrid columns="6">
+        <apex:commandButton action="{!ssc.First}" value="<<" disabled="{!NOT(ssc.HasPrevious)}" title="First Page"/>
+        <apex:commandButton action="{!ssc.Previous}" value="<" disabled="{!NOT(ssc.HasPrevious)}" title="Previous Page"/>
+        <apex:commandButton action="{!ssc.Next}" value=">" disabled="{!NOT(ssc.HasNext)}" title="Next Page"/>
+        <apex:commandButton action="{!ssc.Last}" value=">>" disabled="{!NOT(ssc.HasNext)}" title="Last Page"/>
+        <apex:outputPanel >
+          <apex:outputText value="Records per page: "/>
+          <apex:selectList value="{!ssc.PageSize}" size="1">
+            <apex:actionSupport action="{!null}" event="onchange"/>
+            <apex:selectOption itemValue="5" itemLabel="5"/>
+            <apex:selectOption itemValue="10" itemLabel="10"/>
+            <apex:selectOption itemValue="20" itemLabel="20"/>
+            <apex:selectOption itemValue="25" itemLabel="25"/>
+            <apex:selectOption itemValue="50" itemLabel="50"/>
+          </apex:selectList>&nbsp;&nbsp;
+          <apex:outputText value="Page {!ssc.PageNumber} of {!CEILING(ssc.ResultSize / ssc.PageSize)}"/>
+        </apex:outputPanel>
+      </apex:panelGrid>
+    </apex:pageBlock>
+  </apex:form>
+</apex:page>
