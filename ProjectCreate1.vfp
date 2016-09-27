@@ -1,0 +1,21 @@
+<apex:page standardController="Project__c" extensions="ProjectCreateExtension" title="Project Creation" tabStyle="Project__c">
+  <apex:form >
+    <apex:pageMessages />
+    <apex:pageBlock title="Project Details" mode="edit">
+      <apex:pageBlockButtons location="bottom">
+        <apex:commandButton action="{!ToPage2}" value="Continue" title="Continue to step 2"/>
+      </apex:pageBlockButtons>
+      <apex:pageBlockSection columns="2">
+        <apex:inputField value="{!Project__c.Name}"/>
+        <apex:inputField value="{!Project__c.Start_Date__c}"/>
+        <apex:inputField value="{!Project__c.Budget__c}"/>
+      </apex:pageBlockSection>
+    </apex:pageBlock>
+    <apex:pageBlock title="Sprints">
+      <apex:pageBlockTable value="{!sprints}" var="s">
+      <apex:column value="{!s.Name}"/>
+      <apex:column value="{!s.Start_Date__c}"/>
+      </apex:pageBlockTable>
+    </apex:pageBlock>
+  </apex:form>
+</apex:page>
