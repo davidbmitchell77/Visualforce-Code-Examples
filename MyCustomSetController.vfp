@@ -1,0 +1,39 @@
+<apex:page controller="MyCustomSetController" sidebar="false" tabStyle="Account">
+  <apex:form >
+    <apex:pageBlock title="Customer Search">
+      <apex:pageMessages />
+      <apex:panelGrid columns="8" cellspacing="6">
+        <apex:outputLabel value="Account Name:"/>
+        <apex:inputText value="{!sName}"/>
+        <apex:outputLabel value="City:"/>
+        <apex:inputText value="{!sCity}"/>
+        <apex:outputLabel value="State:"/>
+        <apex:selectList value="{!sState}" size="1">
+          <apex:selectOptions value="{!states}"/>
+        </apex:selectList>
+        <apex:commandButton action="{!search}" value="Search" title="Search for account records."/>
+        <apex:commandButton action="{!clear}" value="Clear" title="Clear the page"/>
+      </apex:panelGrid>
+      <apex:pageBlockTable value="{!accounts}" var="a" id="table" rendered="{!recsFound}">
+        <apex:column >
+          <apex:facet name="header">
+            <apex:commandLink action="{!sortByName}" value="Name" title="sort by Name"/>
+          </apex:facet>
+          <apex:commandLink action="/{!a.Id}" value="{!a.Name}" title="{!a.Description}"/>
+        </apex:column>
+        <apex:column value="{!a.BillingCity}" />
+        <apex:column value="{!a.BillingState}" />
+        <apex:column value="{!a.Type}" />
+        <apex:column value="{!a.Phone}" />
+      </apex:pageBlockTable>
+      <apex:panelGrid columns="6" id="buttons" rendered="{!recsFound}">
+        <apex:commandButton action="{!ssc.First}" value="<<" title="go to the First Page" disabled="{!NOT(ssc.HasPrevious)}"/>
+        <apex:commandButton action="{!ssc.Previous}" value="<" title="Previous Page" disabled="{!NOT(ssc.HasPrevious)}"/>
+        <apex:commandButton action="{!ssc.Next}" value=">" title="Next Page" disabled="{!NOT(ssc.HasNext)}"/>
+        <apex:commandButton action="{!ssc.Last}" value=">>" title="go to the Last Page" disabled="{!NOT(ssc.HasNext)}"/>
+        <apex:commandButton value="Page {!ssc.PageNumber} of {!CEILING(ssc.ResultSize / ssc.PageSize)}" disabled="true" title="You are currently on page {!ssc.PageNumber}"/>
+        <apex:commandButton value="{!ssc.ResultSize} record(s)" disabled="true" title="There are {!ssc.ResultSize} account record(s) in the result set."/>
+      </apex:panelGrid>
+    </apex:pageBlock>
+  </apex:form>
+</apex:page>
