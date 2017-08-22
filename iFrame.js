@@ -5,7 +5,7 @@
   </apex:page>
 
 // Visualforce markup for iframe w/ auto-resizing:
-  <apex:page sidebar="false">
+  <apex:page controller="iframeController" sidebar="false">
     <apex:inputText id="message"/><p/>
     <apex:iframe src="https://trailhead.salesforce.com/" id="iframe" />
     <script>document.getElementById('iframe').height = window.innerHeight - 220;</script>
