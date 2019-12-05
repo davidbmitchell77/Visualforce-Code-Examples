@@ -6,7 +6,8 @@
     <apex:outputLabel value="Name:  "/><apex:inputText value="{!searchName}"/>&nbsp;&nbsp;
     <apex:outputLabel value="Account:  "/><apex:inputText value="{!searchAccount}"/>&nbsp;&nbsp;
     <apex:outputLabel value="City: "/><apex:inputText value="{!searchCity}"/>&nbsp;&nbsp; 
-    <apex:outputLabel value="State: "/><apex:selectList value="{!searchState}" multiselect="false" size="1">
+    <apex:outputLabel value="State: "/>
+    <apex:selectList value="{!searchState}" multiselect="false" size="1">
       <apex:selectOptions value="{!States}"/>
     </apex:selectList>&nbsp;&nbsp;
     <apex:outputLabel value="Country:"/>&nbsp;&nbsp;<apex:selectList value="{!selectedCountry1}" multiselect="false" size="1">
